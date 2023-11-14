@@ -37,4 +37,10 @@ ggplot(A,aes(x,y,color=color))+
 </p>
 
 **More demo code for usage can be find in manual**
+# Citation
+If you use this project in your research, please cite it as follows:
+
+>Zhong, Yang. (2023). ORCID: "https://orcid.org/0000-0002-9146-0875". *ggiconZY*. Version 1.0.0. Date-released: 2023-11-13. Available at URL: "https://github.com/yzhong005/ggiconZY"
+## or
+[View the CITATION.cff file](./CITATION.cff)
 
