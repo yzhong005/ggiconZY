@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this dataset and demo code, please cite it as below."
+authors:
+- family-names: "Zhong"
+  given-names: "Yang"
+  orcid: "https://orcid.org/0000-0002-9146-0875"
+
+title: "ggiconZY"
+version: 1.0.0
+doi: 10.5281/zenodo.1234
+date-released: 2023-11-13
+url: "https://github.com/yzhong005/ggiconZY"
