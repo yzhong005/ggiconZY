@@ -31,6 +31,17 @@ ggplot(A,aes(x,y,color=color))+
   annotation_custom(ggplotGrob(mice6),xmax=-40,ymin=350)+  # add the mice plot to the left up conner outside the point plot, you can change the position of mice plot with xmin, xmax, ymin, and ymax.
   theme(plot.margin = margin(l=150,r=20,t=20,b=20,unit="pt")) # add more space to the left margin to place the mice plot.
 
+# plot as a background of ggplots
+
+mice<-mice_line %>%
+  mutate(x=x/(max(mice_line$x)/max(A$x)),y=y/(max(mice_line$y)/max(A$y))) # transfer the coordinate, make the mice plot the same plot area and range with the point plot.
+
+ggplot()+
+  geom_point(aes(x,y),color="grey95",data=mice)+ # plot the mice with light grey color as a background layer
+  geom_point(aes(x,y,color=color),data=A)+ # plot the point plot as usual
+  theme_classic()+
+  scale_color_aaas()
+
 
 
  
