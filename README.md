@@ -1,12 +1,17 @@
 # ggiconZY
-Here is a collection of icons you can plot together with you ggplot objectives, with demo code of how to cooperate them in your plot. Hope you enjoy using it and I will keep update it when I have time. Also, expecting contribution from you!
+Here is a collection of icons you can plot together with your ggplot objectives, with demo code of how to incorporate them in your plot. Hope you enjoy using it and I will keep updating it when I have time. Also, expecting contributions from you!
 
-
+## You can download the .csv datasets first and read them in R
 ## Here are some demo code for usage
 ```R
-require(ggplot2)
-require(ggsci) 
-require(ggpubr)
+library(tidyverse)
+library(ggplot2)
+library(ggsci)
+library(ggpubr)
+
+#read the .csv files in R first
+
+mice_line<-read.csv("./mice_line.csv") # put the download path (.csv file location) before mice_line.csv, or setwd() to the file path first. 
 
 #plot the mice line plot alone with ggplot
 
