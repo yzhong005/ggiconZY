@@ -10,3 +10,5 @@
 - Added deterministic point limiting and in-session dataset caching.
 - Standardized bundled asset paths and removed accidental CSV row indexes.
 - Added tests, documentation, an MIT license, and automated R CMD check.
+- Added a complete package tutorial, a capability summary, and reproducible
+  demo figures covering every current plot type.

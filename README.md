@@ -3,7 +3,23 @@
 `ggiconZY` is an R package for adding reusable scientific illustrations to
 `ggplot2` figures. It bundles coordinate data for biological icons and helpers
 for drawing those icons alone, placing them inside another plot, and creating
-customizable bacterial culture plates.
+customizable bacterial culture plates and 96-well assay maps.
+
+![Overview of all ggiconZY plot types](man/figures/demo-package-overview.png)
+
+## What ggiconZY can plot
+
+| Plot type | Function | Current options |
+|---|---|---|
+| Scientific icons | `ggicon_plot()` | Drosophila, male symbol, mouse, panda, and Singapore silhouette |
+| Icons inside other graphs | `annotation_ggicon()` | Position and resize any bundled icon in ggplot data coordinates |
+| Bacterial culture plates | `culture_plate_plot()` | Streak plates with colonies or disc-diffusion plates with inhibition zones |
+| 96-well microplates | `well_plate_plot()` | Blank maps, custom labels, assay heatmaps, displayed values, and missing wells |
+
+The package also includes `read_plate_reader()` for importing CSV, text, and
+Excel plate-reader exports, and `ggicon_data()` for accessing raw icon
+coordinates. See the [complete package tutorial](docs/package-tutorial.md) for
+every function, demo figure, customization option, and runnable example.
 
 ## Installation
 
@@ -14,7 +30,9 @@ install.packages("remotes")
 remotes::install_github("yzhong005/ggiconZY")
 ```
 
-## Available icons
+## Quick examples
+
+### Available icons
 
 ```r
 library(ggiconZY)
@@ -36,7 +54,7 @@ For a quick preview of a dense icon, limit the number of plotted points:
 ggicon_plot("panda", colour = "#1B1B1B", max_points = 30000)
 ```
 
-## Add an icon to a ggplot
+### Add an icon to a ggplot
 
 ```r
 library(ggplot2)
@@ -66,7 +84,7 @@ ggplot(observations, aes(x, y, colour = group)) +
 `annotation_ggicon()` uses the parent plot's data coordinates. Adjust `xmin`,
 `xmax`, `ymin`, and `ymax` to control its position and size.
 
-## Draw culture plates
+### Draw culture plates
 
 ```r
 culture_plate_plot("streak")
@@ -81,7 +99,11 @@ culture_plate_plot(
 
 Both the agar and culture colours are customizable.
 
-## Plot a 96-well plate
+![Bacterial streak plate](man/figures/demo-culture-streak.png)
+
+![Antimicrobial disc-diffusion plate](man/figures/demo-culture-disc.png)
+
+### Plot a 96-well plate
 
 Read a plate-reader export directly, then pass the standardized matrix to the
 plot function:
@@ -122,6 +144,9 @@ Values can be an 8 by 12 matrix or a length-96 vector ordered A1 through A12,
 then B1 through B12. See the
 [96-well plate tutorial](docs/96-well-plate-tutorial.md) for controls, labels,
 plate-reader imports, missing wells, and customization examples.
+
+For a guided tour of the entire package, including all current plot types, see
+the [complete ggiconZY tutorial](docs/package-tutorial.md).
 
 ## Contributing
 
