@@ -1,0 +1,9 @@
+# ggiconZY 1.1.0
+
+- Converted the project into an installable R package.
+- Added `ggicon_names()`, `ggicon_data()`, `ggicon_plot()`, and
+  `annotation_ggicon()`.
+- Added `culture_plate_plot()` for streak and disc-diffusion illustrations.
+- Added deterministic point limiting and in-session dataset caching.
+- Standardized bundled asset paths and removed accidental CSV row indexes.
+- Added tests, documentation, an MIT license, and automated R CMD check.
