@@ -1,0 +1,29 @@
+Package: ggiconZY
+Type: Package
+Title: Scientific Icons for 'ggplot2'
+Version: 1.1.0
+Authors@R: person(
+    given = "Yang",
+    family = "Zhong",
+    role = c("aut", "cre"),
+    email = "yzhong005@users.noreply.github.com",
+    comment = c(ORCID = "0000-0002-9146-0875")
+  )
+Description: Provides reusable scientific icon coordinate data and helpers for
+    drawing the icons alone or embedding them in 'ggplot2' figures. Included
+    assets cover common biological subjects and customizable bacterial culture
+    plates.
+License: MIT + file LICENSE
+URL: https://github.com/yzhong005/ggiconZY
+BugReports: https://github.com/yzhong005/ggiconZY/issues
+Depends:
+    R (>= 4.1.0)
+Imports:
+    ggplot2,
+    grDevices,
+    utils
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: false
