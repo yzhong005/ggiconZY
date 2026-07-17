@@ -1,11 +1,15 @@
 # ggiconZY
 
-`ggiconZY` is an R package for adding reusable scientific illustrations to
-`ggplot2` figures. It bundles coordinate data for biological icons and helpers
-for drawing those icons alone, placing them inside another plot, and creating
-customizable bacterial culture plates and 96-well assay maps.
+[![R-CMD-check](https://github.com/yzhong005/ggiconZY/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/yzhong005/ggiconZY/actions/workflows/R-CMD-check.yaml)
 
-![Overview of all ggiconZY plot types](man/figures/demo-package-overview.png)
+`ggiconZY` is an R package for creating reusable microbiology and biological
+illustrations with `ggplot2`. It draws scientific icons, bacterial culture
+plates, disc-diffusion assays, and 96-well plate-reader results as customizable
+ggplot objects.
+
+<p align="center">
+  <img src="man/figures/demo-package-overview.png" alt="Overview of all ggiconZY plot types" width="760">
+</p>
 
 ## What ggiconZY can plot
 
@@ -54,7 +58,9 @@ For a quick preview of a dense icon, limit the number of plotted points:
 ggicon_plot("panda", colour = "#1B1B1B", max_points = 30000)
 ```
 
-![Gallery of every bundled scientific icon](man/figures/demo-icon-gallery.png)
+<p align="center">
+  <img src="man/figures/demo-icon-gallery.png" alt="Gallery of every bundled scientific icon" width="700">
+</p>
 
 ### Add an icon to a ggplot
 
@@ -81,7 +87,9 @@ ggplot(observations, aes(x, y, colour = group)) +
   theme_classic()
 ```
 
-![Mouse icon embedded in a point plot](man/figures/demo-point-mouse.png)
+<p align="center">
+  <img src="man/figures/demo-point-mouse.png" alt="Mouse icon embedded in a point plot" width="620">
+</p>
 
 `annotation_ggicon()` uses the parent plot's data coordinates. Adjust `xmin`,
 `xmax`, `ymin`, and `ymax` to control its position and size.
@@ -92,7 +100,9 @@ ggplot(observations, aes(x, y, colour = group)) +
 culture_plate_plot("streak")
 ```
 
-![Bacterial streak plate](man/figures/demo-culture-streak.png)
+<p align="center">
+  <img src="man/figures/demo-culture-streak.png" alt="Bacterial streak plate" width="420">
+</p>
 
 ### Draw an antimicrobial disc-diffusion plate
 
@@ -105,7 +115,9 @@ culture_plate_plot(
 )
 ```
 
-![Antimicrobial disc-diffusion plate](man/figures/demo-culture-disc.png)
+<p align="center">
+  <img src="man/figures/demo-culture-disc.png" alt="Antimicrobial disc-diffusion plate" width="420">
+</p>
 
 Both the agar and culture colours are customizable. Disc labels, inhibition
 zones, and the isolate identifier can also be changed.
@@ -145,7 +157,9 @@ well_plate_plot(
 )
 ```
 
-![96-well assay heatmap](man/figures/demo-96-well-plate.png)
+<p align="center">
+  <img src="man/figures/demo-96-well-plate.png" alt="96-well assay heatmap" width="720">
+</p>
 
 To create a labelled experimental plate map instead:
 
@@ -158,7 +172,9 @@ plate_labels[, 3:12] <- paste0("S", rep(1:10, each = 8))
 well_plate_plot(labels = plate_labels)
 ```
 
-![Labelled 96-well plate map](man/figures/demo-96-well-layout.png)
+<p align="center">
+  <img src="man/figures/demo-96-well-layout.png" alt="Labelled 96-well plate map" width="720">
+</p>
 
 Values can be an 8 by 12 matrix or a length-96 vector ordered A1 through A12,
 then B1 through B12. See the
