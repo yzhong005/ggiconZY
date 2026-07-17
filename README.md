@@ -3,7 +3,23 @@
 `ggiconZY` is an R package for adding reusable scientific illustrations to
 `ggplot2` figures. It bundles coordinate data for biological icons and helpers
 for drawing those icons alone, placing them inside another plot, and creating
-customizable bacterial culture plates.
+customizable bacterial culture plates and 96-well assay maps.
+
+![Overview of all ggiconZY plot types](man/figures/demo-package-overview.png)
+
+## What ggiconZY can plot
+
+| Plot type | Function | Current options |
+|---|---|---|
+| Scientific icons | `ggicon_plot()` | Drosophila, male symbol, mouse, panda, and Singapore silhouette |
+| Icons inside other graphs | `annotation_ggicon()` | Position and resize any bundled icon in ggplot data coordinates |
+| Bacterial culture plates | `culture_plate_plot()` | Streak plates with colonies or disc-diffusion plates with inhibition zones |
+| 96-well microplates | `well_plate_plot()` | Blank maps, custom labels, assay heatmaps, displayed values, and missing wells |
+
+The package also includes `read_plate_reader()` for importing CSV, text, and
+Excel plate-reader exports, and `ggicon_data()` for accessing raw icon
+coordinates. See the [complete package tutorial](docs/package-tutorial.md) for
+every function, demo figure, customization option, and runnable example.
 
 ## Installation
 
@@ -14,7 +30,9 @@ install.packages("remotes")
 remotes::install_github("yzhong005/ggiconZY")
 ```
 
-## Available icons
+## Quick examples
+
+### Available icons
 
 ```r
 library(ggiconZY)
@@ -36,7 +54,9 @@ For a quick preview of a dense icon, limit the number of plotted points:
 ggicon_plot("panda", colour = "#1B1B1B", max_points = 30000)
 ```
 
-## Add an icon to a ggplot
+![Gallery of every bundled scientific icon](man/figures/demo-icon-gallery.png)
+
+### Add an icon to a ggplot
 
 ```r
 library(ggplot2)
@@ -66,11 +86,17 @@ ggplot(observations, aes(x, y, colour = group)) +
 `annotation_ggicon()` uses the parent plot's data coordinates. Adjust `xmin`,
 `xmax`, `ymin`, and `ymax` to control its position and size.
 
-## Draw culture plates
+### Draw a bacterial streak plate
 
 ```r
 culture_plate_plot("streak")
+```
 
+![Bacterial streak plate](man/figures/demo-culture-streak.png)
+
+### Draw an antimicrobial disc-diffusion plate
+
+```r
 culture_plate_plot(
   "disc",
   labels = c("TZP", "AMC", "MEM", "CTX", "TGC", "NEW"),
@@ -79,7 +105,68 @@ culture_plate_plot(
 )
 ```
 
-Both the agar and culture colours are customizable.
+![Antimicrobial disc-diffusion plate](man/figures/demo-culture-disc.png)
+
+Both the agar and culture colours are customizable. Disc labels, inhibition
+zones, and the isolate identifier can also be changed.
+
+### Plot a 96-well plate
+
+Read a plate-reader export directly, then pass the standardized matrix to the
+plot function:
+
+```r
+plate_values <- read_plate_reader(
+  "plate_reader_export.xlsx",
+  sheet = 1,
+  skip = 0
+)
+
+well_plate_plot(plate_values, show_values = TRUE)
+```
+
+The importer recognizes the 12-row format used in the original ggiconZY code
+(columns 1-12 with measurement fields A-H), the conventional A-H row format,
+and long `Well`/`Value` tables. CSV, TSV, TXT, XLS, and XLSX files are supported.
+
+To generate a simulated demonstration instead:
+
+```r
+set.seed(42)
+assay_values <- matrix(
+  rep(seq(0, 1, length.out = 12), times = 8) + rnorm(96, sd = 0.06),
+  nrow = 8,
+  byrow = TRUE
+)
+
+well_plate_plot(
+  assay_values,
+  palette = c("#fff7ec", "#7f0000")
+)
+```
+
+![96-well assay heatmap](man/figures/demo-96-well-plate.png)
+
+To create a labelled experimental plate map instead:
+
+```r
+plate_labels <- matrix("", nrow = 8, ncol = 12)
+plate_labels[, 1] <- "B"
+plate_labels[, 2] <- "C"
+plate_labels[, 3:12] <- paste0("S", rep(1:10, each = 8))
+
+well_plate_plot(labels = plate_labels)
+```
+
+![Labelled 96-well plate map](man/figures/demo-96-well-layout.png)
+
+Values can be an 8 by 12 matrix or a length-96 vector ordered A1 through A12,
+then B1 through B12. See the
+[96-well plate tutorial](docs/96-well-plate-tutorial.md) for controls, labels,
+plate-reader imports, missing wells, and customization examples.
+
+For a guided tour of the entire package, including all current plot types, see
+the [complete ggiconZY tutorial](docs/package-tutorial.md).
 
 ## Contributing
 
