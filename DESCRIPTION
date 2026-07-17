@@ -1,6 +1,6 @@
 Package: ggiconZY
 Type: Package
-Title: Scientific Icons for 'ggplot2'
+Title: Microbiology Figures and Scientific Icons for 'ggplot2'
 Version: 1.1.0
 Authors@R: person(
     given = "Yang",
@@ -9,10 +9,11 @@ Authors@R: person(
     email = "yzhong005@users.noreply.github.com",
     comment = c(ORCID = "0000-0002-9146-0875")
   )
-Description: Provides reusable scientific icon coordinate data and helpers for
-    drawing the icons alone or embedding them in 'ggplot2' figures. Included
-    assets cover common biological subjects and customizable bacterial culture
-    plates.
+Description: Creates reusable microbiology and biological illustrations as
+    customizable 'ggplot2' objects. Functions draw scientific icons, bacterial
+    streak plates, antimicrobial disc-diffusion assays, and labelled or numeric
+    96-well microplates. Common plate-reader exports can be imported from text,
+    comma-separated values, or spreadsheet files.
 License: MIT + file LICENSE
 URL: https://github.com/yzhong005/ggiconZY
 BugReports: https://github.com/yzhong005/ggiconZY/issues
