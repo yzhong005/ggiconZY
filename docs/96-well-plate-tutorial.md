@@ -30,6 +30,62 @@ well_plate_plot(
 )
 ```
 
+## Read a plate-reader export
+
+Use `read_plate_reader()` to convert an instrument export into the 8 by 12
+matrix expected by `well_plate_plot()`:
+
+```r
+plate_values <- read_plate_reader(
+  "plate_reader_export.xlsx",
+  sheet = 1,
+  skip = 0
+)
+
+well_plate_plot(plate_values, show_values = TRUE)
+```
+
+Excel input uses the `readxl` package. Install it once if necessary:
+
+```r
+install.packages("readxl")
+```
+
+The importer automatically recognizes three common layouts:
+
+1. **Plate columns**, matching the original ggiconZY workflow: 12 records
+   identified by 1-12, with measurement columns named A-H.
+2. **Plate rows**: eight records identified by A-H, with measurement columns
+   named 1-12.
+3. **Long data**: a `Well` field containing IDs such as A1 and H12, plus a
+   numeric measurement field.
+
+The original transposed plate-reader table can also be passed directly:
+
+```r
+plate_read <- data.frame(column = 1:12)
+for (row in LETTERS[1:8]) {
+  plate_read[[row]] <- runif(12, 0.01, 1)
+}
+
+plate_values <- read_plate_reader(plate_read)
+well_plate_plot(plate_values, show_values = TRUE)
+```
+
+If the workbook contains instrument information above the table, set `skip`
+to the number of metadata rows. Select a different worksheet with `sheet`.
+
+Long exports sometimes include several numeric measurements, such as time,
+absorbance, and fluorescence. Select the one to plot explicitly:
+
+```r
+plate_values <- read_plate_reader(
+  "kinetic_export.csv",
+  layout = "long",
+  value_column = "OD600"
+)
+```
+
 ## Map numeric results
 
 Supply either an 8 by 12 numeric matrix or a numeric vector of length 96.

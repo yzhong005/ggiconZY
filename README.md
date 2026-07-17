@@ -83,6 +83,25 @@ Both the agar and culture colours are customizable.
 
 ## Plot a 96-well plate
 
+Read a plate-reader export directly, then pass the standardized matrix to the
+plot function:
+
+```r
+plate_values <- read_plate_reader(
+  "plate_reader_export.xlsx",
+  sheet = 1,
+  skip = 0
+)
+
+well_plate_plot(plate_values, show_values = TRUE)
+```
+
+The importer recognizes the 12-row format used in the original ggiconZY code
+(columns 1-12 with measurement fields A-H), the conventional A-H row format,
+and long `Well`/`Value` tables. CSV, TSV, TXT, XLS, and XLSX files are supported.
+
+To generate a simulated demonstration instead:
+
 ```r
 set.seed(42)
 assay_values <- matrix(
@@ -102,7 +121,7 @@ well_plate_plot(
 Values can be an 8 by 12 matrix or a length-96 vector ordered A1 through A12,
 then B1 through B12. See the
 [96-well plate tutorial](docs/96-well-plate-tutorial.md) for controls, labels,
-missing wells, and customization examples.
+plate-reader imports, missing wells, and customization examples.
 
 ## Contributing
 
