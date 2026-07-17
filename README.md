@@ -54,6 +54,8 @@ For a quick preview of a dense icon, limit the number of plotted points:
 ggicon_plot("panda", colour = "#1B1B1B", max_points = 30000)
 ```
 
+![Gallery of every bundled scientific icon](man/figures/demo-icon-gallery.png)
+
 ### Add an icon to a ggplot
 
 ```r
@@ -84,11 +86,17 @@ ggplot(observations, aes(x, y, colour = group)) +
 `annotation_ggicon()` uses the parent plot's data coordinates. Adjust `xmin`,
 `xmax`, `ymin`, and `ymax` to control its position and size.
 
-### Draw culture plates
+### Draw a bacterial streak plate
 
 ```r
 culture_plate_plot("streak")
+```
 
+![Bacterial streak plate](man/figures/demo-culture-streak.png)
+
+### Draw an antimicrobial disc-diffusion plate
+
+```r
 culture_plate_plot(
   "disc",
   labels = c("TZP", "AMC", "MEM", "CTX", "TGC", "NEW"),
@@ -97,11 +105,10 @@ culture_plate_plot(
 )
 ```
 
-Both the agar and culture colours are customizable.
-
-![Bacterial streak plate](man/figures/demo-culture-streak.png)
-
 ![Antimicrobial disc-diffusion plate](man/figures/demo-culture-disc.png)
+
+Both the agar and culture colours are customizable. Disc labels, inhibition
+zones, and the isolate identifier can also be changed.
 
 ### Plot a 96-well plate
 
@@ -139,6 +146,19 @@ well_plate_plot(
 ```
 
 ![96-well assay heatmap](man/figures/demo-96-well-plate.png)
+
+To create a labelled experimental plate map instead:
+
+```r
+plate_labels <- matrix("", nrow = 8, ncol = 12)
+plate_labels[, 1] <- "B"
+plate_labels[, 2] <- "C"
+plate_labels[, 3:12] <- paste0("S", rep(1:10, each = 8))
+
+well_plate_plot(labels = plate_labels)
+```
+
+![Labelled 96-well plate map](man/figures/demo-96-well-layout.png)
 
 Values can be an 8 by 12 matrix or a length-96 vector ordered A1 through A12,
 then B1 through B12. See the
