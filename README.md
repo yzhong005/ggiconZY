@@ -81,6 +81,29 @@ culture_plate_plot(
 
 Both the agar and culture colours are customizable.
 
+## Plot a 96-well plate
+
+```r
+set.seed(42)
+assay_values <- matrix(
+  rep(seq(0, 1, length.out = 12), times = 8) + rnorm(96, sd = 0.06),
+  nrow = 8,
+  byrow = TRUE
+)
+
+well_plate_plot(
+  assay_values,
+  palette = c("#fff7ec", "#7f0000")
+)
+```
+
+![96-well assay heatmap](man/figures/demo-96-well-plate.png)
+
+Values can be an 8 by 12 matrix or a length-96 vector ordered A1 through A12,
+then B1 through B12. See the
+[96-well plate tutorial](docs/96-well-plate-tutorial.md) for controls, labels,
+missing wells, and customization examples.
+
 ## Contributing
 
 Bug reports and new icon proposals are welcome. See
